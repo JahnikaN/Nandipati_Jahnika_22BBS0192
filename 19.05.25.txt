@@ -1,0 +1,138 @@
+SHOW databases;
+Use VIT_MongoDB;
+
+Show tables from VIT_MongoDB;
+Drop Table Student_Mark_Detail;
+desc Student_Details;
+Alter Table Student_Details Drop column country;
+
+CREATE table Student_Detail_VIT_Vellore (
+	Name  VARCHAR(100),
+    reg_no VARCHAR(20),
+    school VARCHAR(100),
+    graduation_year INT
+);
+INSERT INTO Student_Details_VIT_Vellore (name, reg_no, school, graduation_year) VALUES
+('Jah', '22ABC001', 'SCOPE', 2025),
+('Nam', '22ABC002', 'SCORE', 2025),
+('Keethu', '22ABC003', 'SELECT', 2025),
+('Niki', '22ABC004', 'SCORE', 2025),
+('KSS', '22ABC005', 'SELECT', 2025),
+('Shri', '22ABC006', 'SCOPE', 2025),
+('Teju', '22ABC007', 'SCOPE', 2025),
+('Shivu', '22ABC008', 'SCORE', 2025),
+('Vidhi', '22ABC009', 'SELECT', 2025),
+('Sharvi', '22ABC010', 'SMEC', 2025);
+
+CREATE TABLE Student_Details_VIT_Chennai ( 
+    name VARCHAR(100),
+    reg_no VARCHAR(20),
+    school VARCHAR(100),
+    graduation_year INT
+);
+
+INSERT INTO Student_Details_VIT_Chennai (name, reg_no, school, graduation_year) VALUES
+('Aarav', '22CHN001', 'SCOPE', 2025),
+('Diya', '22CHN002', 'SCORE', 2025),
+('Ishaan', '22CHN003', 'SMEC', 2025),
+('Meera', '22CHN004', 'SELECT', 2025),
+('Karan', '22CHN005', 'SCOPE', 2025),
+('Tanya', '22CHN006', 'SCORE', 2025),
+('Ravi', '22CHN007', 'SMEC', 2025),
+('Sneha', '22CHN008', 'SELECT', 2025),
+('Vikram', '22CHN009', 'SCORE', 2025),
+('Aisha', '22CHN010', 'SCOPE', 2025);
+
+CREATE TABLE Student_Details_VIT_AP ( 
+    name VARCHAR(100),
+    reg_no VARCHAR(20),
+    school VARCHAR(100),
+    graduation_year INT
+);
+
+INSERT INTO Student_Details_VIT_AP (name, reg_no, school, graduation_year) VALUES
+('Harsha', '22AP001', 'SCOPE', 2025),
+('Lavanya', '22AP002', 'SCORE', 2025),
+('Rithvik', '22AP003', 'SMEC', 2025),
+('Pooja', '22AP004', 'SELECT', 2025),
+('Yash', '22AP005', 'SCORE', 2025),
+('Neha', '22AP006', 'SCOPE', 2025),
+('Kunal', '22AP007', 'SMEC', 2025),
+('Anika', '22AP008', 'SELECT', 2025),
+('Manoj', '22AP009', 'SCORE', 2025),
+('Divya', '22AP010', 'SCOPE', 2025);
+
+CREATE TABLE Student_Details_VIT_Bhopal ( 
+    name VARCHAR(100),
+    reg_no VARCHAR(20),
+    school VARCHAR(100),
+    graduation_year INT
+);
+
+INSERT INTO Student_Details_VIT_Bhopal (name, reg_no, school, graduation_year) VALUES
+('Samar', '22BPL001', 'SCORE', 2025),
+('Naina', '22BPL002', 'SCOPE', 2025),
+('Aman', '22BPL003', 'SMEC', 2025),
+('Riya', '22BPL004', 'SELECT', 2025),
+('Dev', '22BPL005', 'SCOPE', 2025),
+('Kritika', '22BPL006', 'SCORE', 2025),
+('Aayush', '22BPL007', 'SMEC', 2025),
+('Ira', '22BPL008', 'SELECT', 2025),
+('Bhavya', '22BPL009', 'SCORE', 2025),
+('Tushar', '22BPL010', 'SCOPE', 2025);
+
+
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY INT,
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 100000, '14-02-20 09.00.00', 'HR'),
+		(002, 'Niharika', 'Verma', 80000, '14-06-11 09.00.00', 'Admin'),
+		(003, 'Vishal', 'Singhal', 300000, '14-02-20 09.00.00', 'HR'),
+		(004, 'Amitabh', 'Singh', 500000, '14-02-20 09.00.00', 'Admin'),
+		(005, 'Vivek', 'Bhati', 500000, '14-06-11 09.00.00', 'Admin'),
+		(006, 'Vipul', 'Diwan', 200000, '14-06-11 09.00.00', 'Account'),
+		(007, 'Satish', 'Kumar', 75000, '14-01-20 09.00.00', 'Account'),
+        (008, 'Geetika', 'Chauhan', 90000, '14-04-11 09.00.00', 'Admin');
+
+select * from worker;
+delete from worker where department='Account';
+drop table worker;
+delete from Student_Details_VIT_Bhopal where name='Naina';
+truncate table worker;
+select * from worker where salary>75000;
+select first_name from worker where department='HR' and salary>=10000;
+SELECT first_name,department FROM Worker WHERE SALARY > 200000 AND DEPARTMENt ='HR';
+SELECT * FROM Worker WHERE SALARY < 200000 AND DEPARTMENT ='HR' OR DEPARTMENT = 'Admin';
+select * from worker where salary>100000 and salary<300000 and (department='Admin' or department='Account');
+select * from worker where department not in ('HR','Admin');
+#evennoofid, max salary, admin or hr department
+SELECT * FROM worker WHERE MOD(worker_id, 2) = 0 AND department IN ('Admin', 'HR') AND salary = (SELECT MAX(salary) FROM worker1 WHERE MOD(worker_id, 2) = 0 AND department IN ('Admin', 'HR'));
+
+
+create database vit;
+use vit;
+create table cse(id int, name varchar(40));
+start transaction;
+insert into cse values(101, 'Jahni');
+savepoint a11;
+insert into cse values(102, 'Niki');
+savepoint a12;
+delete from cse where id=101;
+select * from cse;
+rollback to a12;
+delete from cse;
+insert into cse values(103, 'Sharvi');
+savepoint a13;
+insert into cse values(104, 'Shri');
+savepoint a14;
+delete from cse where id=103;
+select * from cse;
+rollback to a14;
+commit;
