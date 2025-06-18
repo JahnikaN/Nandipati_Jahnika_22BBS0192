@@ -1,0 +1,26 @@
+SHOW databases;
+CREATE database VIT_MongoDB;
+Use VIT_MongoDB;
+CREATE table Student_Detail_VIT_Vellore (
+	Name  VARCHAR(100),
+    reg_no VARCHAR(20),
+    school VARCHAR(100),
+    graduation_year INT
+);
+INSERT INTO Student_Details_VIT_Vellore (full_name, reg_no, school, graduation_year) VALUES
+('Jah', '22ABC001', 'SCOPE', 2025),
+('Nam', '22ABC002', 'SCORE', 2025),
+('Keethu', '22ABC003', 'SELECT', 2025),
+('Niki', '22ABC004', 'SCORE', 2025),
+('KSS', '22ABC005', 'SELECT', 2025),
+('Shri', '22ABC006', 'SCOPE', 2025),
+('Teju', '22ABC007', 'SCOPE', 2025),
+('Shivu', '22ABC008', 'SCORE', 2025),
+('Vidhi', '22ABC009', 'SELECT', 2025),
+('Sharvi', '22ABC010', 'SMEC', 2025);
+select * from Student_Detail_VIT_Vellore;
+alter table Student_Detail_VIT_Vellore add(phone varchar(10));
+desc Student_Detail_VIT_Vellore;
+alter table Student_Detail_VIT_Vellore drop column phone;
+alter table Student_Detail_VIT_Vellore add(s_country varchar(10) default 'India');
+update Student_Detail_VIT_Vellore set name='Nikhi' WHERE name='Niki';
